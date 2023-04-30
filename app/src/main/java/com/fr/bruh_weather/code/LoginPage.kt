@@ -65,6 +65,7 @@ fun LoginPage(
                     fontFamily = Inter,
                     style = TextStyle(fontSize = 40.sp),
                     fontWeight = FontWeight.Bold,
+                modifier=Modifier .padding(start = 20.dp)
 
                 )
 
@@ -73,6 +74,7 @@ fun LoginPage(
                         onGetStarted ,
                     modifier = Modifier
                         .fillMaxWidth(0.6f)
+                        .padding(start = 20.dp)
                      ,
 //                    navController,
                     colors = ButtonDefaults.buttonColors(
@@ -85,8 +87,9 @@ fun LoginPage(
                     )
             {
                 Row(
-                    modifier=Modifier .padding(end=8.dp),
-                    verticalAlignment = Alignment.CenterVertically
+                    modifier=Modifier .padding(end=8.dp, start = 20.dp),
+
+                verticalAlignment = Alignment.CenterVertically
             ){
                 Icon(imageVector = ImageVector.vectorResource(
                     id = R.drawable.diamond_start

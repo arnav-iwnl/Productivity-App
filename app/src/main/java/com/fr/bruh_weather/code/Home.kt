@@ -20,12 +20,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
 import com.fr.bruh_weather.ui.theme.*
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.ZoneId
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 
 @Composable
 fun Home(
     fname: String? , sname: String? ,
-
+    onProfileClick: () -> Unit
 ) {
 
     val Inter = FontFamily(
@@ -59,8 +65,6 @@ fun Home(
                 style = TextStyle(fontSize = 20.sp),
                 modifier=Modifier.padding(start=10.dp,top=16.dp)
             )
-
-
 
         }
         Spacer(modifier = Modifier.size(30.dp))
@@ -101,6 +105,31 @@ fun Home(
             Card(modifier=Modifier .size(300.dp,200.dp)
                 , contentColor = Color.Gray,
                 shape=Shapes.large){
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    val now = remember { LocalTime.now(ZoneId.of("Asia/Kolkata")) }
+                    val formattedTime = remember(now) {
+                        DateTimeFormatter.ofPattern("hh:mm a", Locale.getDefault()).format(now.atOffset(ZoneOffset.UTC))
+                    }
+                    val formattedDate = remember { LocalDate.now(ZoneId.of("Asia/Kolkata")).format(DateTimeFormatter.ofPattern("EEE, MMM dd", Locale.getDefault())) }
+
+                    Text(
+                        text = formattedTime,
+                        style = MaterialTheme.typography.h2,
+                        color = Color.DarkGray
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = formattedDate,
+                        style = MaterialTheme.typography.body1,
+                        color = Color.Gray
+                    )
+                }
+
+
             }
         }
         Spacer(modifier = Modifier. size(25.dp))
