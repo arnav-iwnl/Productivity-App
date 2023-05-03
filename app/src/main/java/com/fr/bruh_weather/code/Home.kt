@@ -14,6 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle.Companion.Italic
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -46,85 +47,108 @@ fun Home(
 
 
 
+ Box(modifier = Modifier
+     .background(Bg)
+     .fillMaxSize()) {
+    Column(
+        modifier = Modifier
+            .background(Bg)
+            .verticalScroll(scrollState)
+    )
 
-    Column(modifier = Modifier
-        .background(Bg)
-        .verticalScroll(scrollState)) {
+    {
         Spacer(modifier = Modifier.size(10.dp))
-        Row(modifier = Modifier
-            .height(50.dp)
-            .fillMaxWidth()
-            ,
+        Row(
+            modifier = Modifier
+                .height(50.dp)
+                .fillMaxWidth() ,
             horizontalArrangement = Arrangement.SpaceBetween
-        ){
-            Text(text = "Home",
-                color = Color.White,
-                textAlign = TextAlign.Start,
-                fontFamily = Inter,
-                fontWeight = FontWeight.Normal,
-                style = TextStyle(fontSize = 20.sp),
-                modifier=Modifier.padding(start=10.dp,top=16.dp)
+        ) {
+            Text(
+                text = "Home" ,
+                color = Color.White ,
+                textAlign = TextAlign.Start ,
+                fontFamily = Inter ,
+                fontWeight = FontWeight.Normal ,
+                style = TextStyle(fontSize = 20.sp) ,
+                modifier = Modifier.padding(start = 10.dp , top = 16.dp)
             )
+            Icon(painter = painterResource(id = R.drawable.programmer),
+                contentDescription = "Logo",)
 
         }
         Spacer(modifier = Modifier.size(30.dp))
-        Column(modifier= Modifier
-            .fillMaxWidth(1f)
-            .padding(start = 10.dp)
-            )
+        Column(
+            modifier = Modifier
+                .fillMaxWidth(1f)
+                .padding(start = 10.dp)
+        )
         {
-            Text(text = "Hello",
-                color = Color.White,
-                textAlign = TextAlign.Start,
-                fontFamily = Inter,
-                fontWeight = FontWeight.Bold,
-                style = TextStyle(fontSize = 50.sp),
+            Text(
+                text = "Hello" ,
+                color = Color.White ,
+                textAlign = TextAlign.Start ,
+                fontFamily = Inter ,
+                fontWeight = FontWeight.Bold ,
+                style = TextStyle(fontSize = 50.sp) ,
 
-            )
-
-                Text(text = fname.toString() ,
-                    color = Color.White,
-                    textAlign = TextAlign.Start,
-                    fontFamily = Inter,
-                    fontWeight = FontWeight.Bold,
-                    style = TextStyle(fontSize = 50.sp),
-                    modifier = Modifier,
                 )
-                Text(text= sname.toString() ,
-                    color = Color.White,
-                    textAlign = TextAlign.Start,
-                    fontFamily = Inter,
-                    fontWeight = FontWeight.Bold,
-                    style = TextStyle(fontSize = 50.sp),
-                    modifier = Modifier)
+
+            Text(
+                text = fname.toString() + " " + sname.toString() ,
+                color = Color.White ,
+                textAlign = TextAlign.Start ,
+                fontFamily = Inter ,
+                fontWeight = FontWeight.Bold ,
+                style = TextStyle(fontSize = 50.sp) ,
+                modifier = Modifier ,
+            )
+//                Text(text= sname.toString() ,
+//                    color = Color.White,
+//                    textAlign = TextAlign.Start,
+//                    fontFamily = Inter,
+//                    fontWeight = FontWeight.Bold,
+//                    style = TextStyle(fontSize = 50.sp),
+//                    modifier = Modifier)
 
         }
-        Spacer(modifier = Modifier. size(25.dp))
-        Box(modifier=Modifier .padding(start=40.dp),
-            contentAlignment = Alignment.CenterEnd){
-            Card(modifier=Modifier .size(300.dp,200.dp)
-                , contentColor = Color.Gray,
-                shape=Shapes.large){
+        Spacer(modifier = Modifier.size(25.dp))
+        Box(
+            modifier = Modifier.padding(start = 40.dp) ,
+            contentAlignment = Alignment.CenterEnd
+        ) {
+            Card(
+                modifier = Modifier.size(300.dp , 200.dp) , contentColor = Color.Gray ,
+                shape = Shapes.large
+            ) {
                 Column(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
+                    modifier = Modifier.fillMaxSize() ,
+                    verticalArrangement = Arrangement.Center ,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     val now = remember { LocalTime.now(ZoneId.of("Asia/Kolkata")) }
                     val formattedTime = remember(now) {
-                        DateTimeFormatter.ofPattern("hh:mm a", Locale.getDefault()).format(now.atOffset(ZoneOffset.UTC))
+                        DateTimeFormatter.ofPattern("hh:mm a" , Locale.getDefault())
+                            .format(now.atOffset(ZoneOffset.UTC))
                     }
-                    val formattedDate = remember { LocalDate.now(ZoneId.of("Asia/Kolkata")).format(DateTimeFormatter.ofPattern("EEE, MMM dd", Locale.getDefault())) }
+                    val formattedDate = remember {
+                        LocalDate.now(ZoneId.of("Asia/Kolkata")).format(
+                            DateTimeFormatter.ofPattern(
+                                "EEE, MMM dd" ,
+                                Locale.getDefault()
+                            )
+                        )
+                    }
 
                     Text(
-                        text = formattedTime,
-                        style = MaterialTheme.typography.h2,
+                        text = formattedTime ,
+                        style = MaterialTheme.typography.h2 ,
                         color = Color.DarkGray
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = formattedDate,
-                        style = MaterialTheme.typography.body1,
+                        text = formattedDate ,
+                        style = MaterialTheme.typography.body1 ,
                         color = Color.Gray
                     )
                 }
@@ -132,18 +156,29 @@ fun Home(
 
             }
         }
-        Spacer(modifier = Modifier. size(25.dp))
-        Text("Quote of the Day",
-            color = Color.White,
-            textAlign = TextAlign.Start,
-            fontFamily = Inter,
-            fontWeight = FontWeight.Bold,
-            style = TextStyle(fontSize = 36.sp),
+        Spacer(modifier = Modifier.size(25.dp))
+        Text(
+            "Quote of the Day" ,
+            color = Color.White ,
+            textAlign = TextAlign.Start ,
+            fontFamily = Inter ,
+            fontWeight = FontWeight.Bold ,
+            style = TextStyle(fontSize = 36.sp) ,
             modifier = Modifier
-                .padding(start = 10.dp))
-        Spacer(modifier = Modifier. size(15.dp))
-
+                .padding(start = 10.dp)
+        )
+        Spacer(modifier = Modifier.size(15.dp))
+        Card(modifier = Modifier.fillMaxWidth().height(125.dp)
+            ,contentColor = Color.Gray, shape = Shapes.large){
+            Text(text="“It’s only after you’ve stepped outside your comfort zone that you begin to change, grow, and transform.”"
+            ,fontFamily=Inter, fontWeight = FontWeight.Bold,fontStyle =Italic,style = TextStyle(fontSize = 26.sp),
+                textAlign = TextAlign.Center
+                ,modifier = Modifier
+                    .padding(start = 10.dp)
+            )
+        }
 
 
     }
+ }
 }

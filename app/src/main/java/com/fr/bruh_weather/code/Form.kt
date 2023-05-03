@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -17,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.fr.bruh_weather.ui.theme.Bg
 import com.fr.bruh_weather.ui.theme.Bt21000
 
 
@@ -40,20 +42,9 @@ fun Form(onContinueClick:(String,String)-> Unit) {
     Column(modifier = Modifier
         .fillMaxSize()
         .verticalScroll(scrollState)
-        .background(Color.DarkGray),
+        .background(Bg),
     verticalArrangement = Arrangement.SpaceEvenly)
     {
-        Box(modifier = Modifier
-
-            .background(Color.DarkGray)
-
-        ){
-
-        }
-        Spacer(modifier = Modifier
-            .width(20.dp)
-            .height(20.dp)
-        )
         Column(modifier = Modifier,
 
         ){
@@ -61,7 +52,10 @@ fun Form(onContinueClick:(String,String)-> Unit) {
                 value = fname.value ,
                 label = {
                     Text(text = "First Name")
-                },
+                }, colors = TextFieldDefaults.textFieldColors(
+                    textColor = Color.White,
+                    cursorColor = Color.White,
+                ),
                 onValueChange = {
                     fname.value = it
                 } ,
@@ -74,38 +68,44 @@ fun Form(onContinueClick:(String,String)-> Unit) {
             TextField(value = lname.value,
                 label = {
                     Text(text = "Last Name")
-                }
-                ,onValueChange = {
+                }, colors = TextFieldDefaults.textFieldColors(
+                    textColor = Color.White,
+                    cursorColor = Color.White,
+                ),
+                onValueChange = {
                 lname.value =it
             }, modifier= Modifier
-                .fillMaxWidth()
-                .background(Color.DarkGray),singleLine=true)
+                    .fillMaxWidth()
+                    .background(Color.DarkGray),singleLine=true)
             Spacer(modifier = Modifier
                 .width(20.dp)
                 .height(20.dp)
             )
-            Button(
-                onClick = {onContinueClick(fname.value,lname.value)},
-                modifier = Modifier,
+           Box(modifier = Modifier . fillMaxWidth(), contentAlignment= Alignment.Center){
+               Button(
+                   onClick = {onContinueClick(fname.value,lname.value)},
+                   modifier = Modifier,
+
 //                    navController,
-                colors = ButtonDefaults.buttonColors(backgroundColor = Bt21000),
-                shape = RoundedCornerShape(50.dp),
+                   colors = ButtonDefaults.buttonColors(backgroundColor = Bt21000),
+                   shape = RoundedCornerShape(50.dp),
 
 
-                ) {
-                Text(
-                    text = "Continue",
-                    textAlign = TextAlign.Center,
-                    fontFamily = Inter,
-                    color=Color.White,
-                    style = TextStyle(fontSize = 30.sp),
-                    fontWeight = FontWeight.Bold,
-                    overflow = TextOverflow.Clip,
-                    modifier = Modifier
-                        .padding(60.dp,3.dp)
+                   ) {
+                   Text(
+                       text = "Continue",
+                       textAlign = TextAlign.Center,
+                       fontFamily = Inter,
+                       color=Color.White,
+                       style = TextStyle(fontSize = 30.sp),
+                       fontWeight = FontWeight.Bold,
+                       overflow = TextOverflow.Clip,
+                       modifier = Modifier
+                           .padding(60.dp,3.dp)
 
-                )
-            }
+                   )
+               }
+           }
         }
     }
 }

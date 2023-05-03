@@ -73,7 +73,7 @@ fun LoginPage(
                     onClick =
                         onGetStarted ,
                     modifier = Modifier
-                        .fillMaxWidth(0.6f)
+                        .fillMaxWidth(0.9f)
                         .padding(start = 20.dp)
                      ,
 //                    navController,
@@ -87,7 +87,7 @@ fun LoginPage(
                     )
             {
                 Row(
-                    modifier=Modifier .padding(end=8.dp, start = 20.dp),
+                    modifier=Modifier .padding(end=0.dp, start = 0.dp),
 
                 verticalAlignment = Alignment.CenterVertically
             ){
@@ -97,7 +97,7 @@ fun LoginPage(
                     contentDescription = null,
                     tint=Color.White,
                     modifier=Modifier
-                        .padding(end=9.dp)
+                        .padding(end=10.dp)
                 )
                 Text(text = "Next", textAlign = TextAlign.Center,
                     fontFamily = Inter,
@@ -110,7 +110,6 @@ fun LoginPage(
             }
 
                 }
-                Spacer(modifier = Modifier .size(20.dp))
                 Text(text = "Click on the button to get started.",
                     textAlign = TextAlign.Center,
                     fontFamily = Inter,
@@ -119,7 +118,7 @@ fun LoginPage(
                     fontWeight = FontWeight.Normal,
                     overflow = TextOverflow.Clip,
                     modifier = Modifier
-                        .padding(60.dp,30.dp)
+                        .padding(90.dp,30.dp)
                 )
 
 
